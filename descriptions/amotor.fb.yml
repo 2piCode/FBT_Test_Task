@@ -1,0 +1,40 @@
+# Тип функционального блока
+class: AMOTOR
+
+# Версия ФБ.
+version: 0.0.0.1
+
+# Пространство имен ФБ
+namespace: ~
+
+# Производитель, не более 64 символов
+vendor: Vendor
+
+# Локализованное описание ФБ
+description: {strings: fb_descr}
+
+# Список интерфейсов
+#interfaces:
+#  - IDEMO
+
+# Имя семейства ФБ. Должно быть одинаково для одной библиотеки
+family: motor
+
+# Описание технологических данных
+tech_data: 
+  # Версия технологических данных
+  version: 0.0.0.1
+
+# Описание параметров
+parameters:
+  - {name: EXAMPLE, spec: input, type: lreal, value: 0.0, description: {strings: example_descr}}
+
+# Локализация строк
+strings:
+  ru:
+    fb_descr: 'Шаблон AMOTOR'
+    example_descr: 'Пример описания параметра'
+  en:
+    fb_descr: 'Template of AMOTOR'
+    example_descr: 'Example of parameter description'
+...
