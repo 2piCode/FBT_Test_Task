@@ -27,14 +27,58 @@ tech_data:
 
 # Описание параметров
 parameters:
-  - {name: EXAMPLE, spec: input, type: lreal, value: 0.0, description: {strings: example_descr}}
+  - {name: qufa, spec: conf, type: lreal, value: 1.0, description: {strings: qufa_descr}}
+  - {name: round, spec: conf, type: bool, value: 0, description: {strings: round_descr}}
+  - {name: mode, spec: conf, type: lint, value: 0, description: {strings: mode_descr}}
+
+  - {name: in, spec: input, type: bool, value: 0, description: {strings: in_descr }}
+  - {name: delta, spec: input, type: lint, value: 0, description: {strings: delta_descr }}
+  - {name: min, spec: input, type: lint, value: 0, description: {strings: min_descr }}
+  - {name: max, spec: input, type: lint, value: 0, description: {strings: max_descr }}
+  - {name: ud, spec: input, type: bool, value: 0, description: {strings: ud_descr }}
+  - {name: reset, spec: input, type: bool, value: 0, description: {strings: reset_descr }}
+  - {name: clr, spec: input, type: bool, value: 0, description: {strings: clr_descr }}
+  - {name: hold, spec: input, type: bool, value: 0, description: {strings: hold_descr}}
+
+  - {name: count, spec: output, type: lint, value: 0, description: {strings: count_descr }}
+  - {name: cumcount, spec: output, type: lint, value: 0, description: {strings: cumcount_descr }}
+  - {name: pcum, spec: output, type: lint, value: 0, description: {strings: pcum_descr }}
+  - {name: lim, spec: output, type: bool, value: 0, description: {strings: lim_descr }}
 
 # Локализация строк
 strings:
   ru:
     fb_descr: 'Шаблон AMOTOR'
-    example_descr: 'Пример описания параметра'
+    qufa_descr: 'Количественный коэффицент счетчика'
+    round_descr: 'Циклический счетчик'
+    mode_descr: 'Рабочий режим'
+    in_descr: 'Вход'
+    delta_descr: 'Приращение в счетчике'
+    min_descr: 'Минимум'
+    max_descr: 'Максимум'
+    ud_descr: 'Направление счета (вверх/вниз)'
+    reset_descr: 'Сброс'
+    clr_descr: 'Очистить счетчик'
+    hold_descr: 'Счетчик фиксации Hold'
+    count_descr: 'Значение счетчика'
+    cumcount_descr: 'Значение накапливающего счетчика'
+    pcum_descr: 'Предыдущее значение накапливающего счетчика'
+    lim_descr: 'Предельное значение'
   en:
     fb_descr: 'Template of AMOTOR'
-    example_descr: 'Example of parameter description'
+    qufa_descr: 'The quantitative coefficient of the counter'
+    round_descr: 'Cyclic counter'
+    mode_descr: 'Operating mode'
+    in_descr: 'Enter'
+    delta_descr: 'Increment in the counter'
+    min_descr: 'Minimum'
+    max_descr: 'Maximum'
+    ud_descr: 'Account direction (up/down)'
+    reset_descr: 'Reset'
+    clr_descr: 'Clear counter'
+    hold_descr: 'Hold Commit Counter'
+    count_descr: 'Counter value'
+    cumcount_descr: 'The value of the accumulating counter'
+    pcum_descr: 'Previous value of the accumulating counter'
+    lim_descr: 'Limit value'
 ...
