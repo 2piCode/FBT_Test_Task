@@ -18,6 +18,11 @@ public:
     // };
 
 private:
+    void Reset() noexcept;
+    void Clear() noexcept;
+    void continuous_execute() noexcept;
+    void rising_execute() noexcept;
+    void falling_execute() noexcept;
     // технологические данные
     // TechData& tech_data_;
 };
