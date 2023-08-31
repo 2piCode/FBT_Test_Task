@@ -19,18 +19,23 @@ AMOTOR::~AMOTOR() {
 }
 
 void AMOTOR::Init() noexcept {
-    count = ud ? min : max;
+    count = static_cast<bool_t>(ud) ? static_cast<lint_t>(max) : static_cast<lint_t>(min);
 }
 
 void AMOTOR::Execute() noexcept {
-    cumcount = static_cast<lint_t>(cumcount) + lint_t(1);
+    cumcount = static_cast<lint_t>(cumcount) + lint_t{1} * static_cast<lint_t>(delta) * static_cast<lreal_t>(qufa);
+    if(lim && hold)
+        return;
+
     if(reset && clr)
     { }
     else if(reset)
     {
         Reset();
+        return;
     } else if(clr) {
         Clear();
+        return;
     }
     auto mode = static_cast<lint_t>(this->mode);
     switch (mode) {
@@ -54,13 +59,9 @@ void AMOTOR::Execute() noexcept {
     }
 
     if(count > static_cast<lint_t>(max))
-    {
-        lim = lint_t(1);
-    }
+        lim = bool_t {true};
     else if (count < static_cast<lint_t>(min))
-    {
-        lim = lint_t(1);
-    }
+        lim = bool_t {true};
 }
 
 void AMOTOR::Reset() noexcept {
@@ -76,16 +77,17 @@ void AMOTOR::Clear() noexcept {
 }
 
 void AMOTOR::continuous_execute() noexcept {
-
-    count = static_cast<lint_t>(count) + static_cast<lint_t>(delta) * static_cast<lreal_t>(qufa);
+    count = static_cast<lint_t>(count) + static_cast<lint_t>(delta) * static_cast<lreal_t>(qufa) * (ud ? -1 : 1);
 }
 
 void AMOTOR::rising_execute() noexcept {
-    if(in)
-        count = static_cast<lint_t>(count) + (ud ? 1 : -1);
+    if(!pin && in)
+        count = static_cast<lint_t>(count) + (ud ? -1 : 1) * static_cast<lreal_t>(qufa);
+    pin = in;
 }
 
 void AMOTOR::falling_execute() noexcept {
-    if(!in)
-        count = static_cast<lint_t>(count) + (ud ? 1 : -1);
+    if(!in && pin)
+        count = static_cast<lint_t>(count) + (ud ? -1 : 1) * static_cast<lreal_t>(qufa);
+    pin = in;
 }
