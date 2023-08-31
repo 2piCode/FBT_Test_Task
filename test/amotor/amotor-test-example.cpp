@@ -20,7 +20,7 @@ FBT_AUTO_TEST_CASE(test_template_case_1) {
     FBT_CHECK_EQUAL(static_cast<string64_t>(param_name), string64_t{"TEST"});
 };
 
-namespace CONTINUOUS_MODE {
+namespace continuous_mode {
     FBT_AUTO_TEST_CASE(continuous_count_value_once_execute) {
         MockFbData data = AMOTOR_GetMockFbData();
         const IParameter& count = data.GetMutableParameter("count");
@@ -71,7 +71,7 @@ namespace CONTINUOUS_MODE {
     }
 }
 
-namespace RISING_MODE
+namespace rising_mode
 {
     FBT_AUTO_TEST_CASE(rising_count_value_once_execute) {
         MockFbData data = AMOTOR_GetMockFbData();
@@ -119,7 +119,7 @@ namespace RISING_MODE
     }
 }
 
-namespace FALLING_MODE
+namespace falling_mode
 {
     FBT_AUTO_TEST_CASE(falling_count_value_once_execute) {
         MockFbData data = AMOTOR_GetMockFbData();
@@ -168,7 +168,7 @@ namespace FALLING_MODE
     }
 }
 
-namespace GENERAL {
+namespace general {
     FBT_AUTO_TEST_CASE(count_value_with_different_qufa) {
         MockFbData data = AMOTOR_GetMockFbData();
         const IParameter& count = data.GetMutableParameter("count");

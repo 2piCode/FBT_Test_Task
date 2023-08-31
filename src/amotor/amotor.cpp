@@ -1,5 +1,4 @@
 #include "amotor/amotor.h"
-#include <stdexcept>
 
 lword_t AMOTOR::TechDataSize() {
     // задайте значения для AMOTOR::TechData, 
@@ -37,18 +36,39 @@ void AMOTOR::Execute() noexcept {
         Clear();
         return;
     }
+
+    ExecuteMode();
+    CheckLimits();
+}
+
+void AMOTOR::Reset() noexcept {
+    reset = false;
+    pcum = cumcount;
+    cumcount = lint_t(0);
+    Init();
+}
+
+void AMOTOR::Clear() noexcept {
+    clr = false;
+    Init();
+}
+
+void AMOTOR::ExecuteMode() noexcept {
     auto mode = static_cast<lint_t>(this->mode);
     switch (mode) {
         case 0:
-            continuous_execute();
+            ContinuousExecute();
             break;
         case 1:
-            rising_execute();
+            FrontExecute(true);
             break;
         case 2:
-            falling_execute();
+            FrontExecute(false);
             break;
     }
+}
+
+void AMOTOR::CheckLimits() noexcept {
     auto count = static_cast<lint_t>(this->count);
     auto max = static_cast<lint_t>(this->max);
     auto min = static_cast<lint_t>(this->min);
@@ -64,30 +84,13 @@ void AMOTOR::Execute() noexcept {
         lim = bool_t {true};
 }
 
-void AMOTOR::Reset() noexcept {
-    reset = false;
-    pcum = cumcount;
-    cumcount = lint_t(0);
-    Init();
-}
-
-void AMOTOR::Clear() noexcept {
-    clr = false;
-    Init();
-}
-
-void AMOTOR::continuous_execute() noexcept {
+void AMOTOR::ContinuousExecute() noexcept {
     count = static_cast<lint_t>(count) + static_cast<lint_t>(delta) * static_cast<lreal_t>(qufa) * (ud ? -1 : 1);
 }
 
-void AMOTOR::rising_execute() noexcept {
-    if(!pin && in)
-        count = static_cast<lint_t>(count) + (ud ? -1 : 1) * static_cast<lreal_t>(qufa);
-    pin = in;
-}
-
-void AMOTOR::falling_execute() noexcept {
-    if(!in && pin)
+void AMOTOR::FrontExecute(bool_t is_forward_front) noexcept {
+    if(is_forward_front && !pin && in ||
+        !is_forward_front && !in && pin)
         count = static_cast<lint_t>(count) + (ud ? -1 : 1) * static_cast<lreal_t>(qufa);
     pin = in;
 }

@@ -20,9 +20,10 @@ public:
 private:
     void Reset() noexcept;
     void Clear() noexcept;
-    void continuous_execute() noexcept;
-    void rising_execute() noexcept;
-    void falling_execute() noexcept;
+    void ExecuteMode() noexcept;
+    void ContinuousExecute() noexcept;
+    void FrontExecute(bool_t) noexcept;
+    void CheckLimits() noexcept;
     // технологические данные
     // TechData& tech_data_;
 };
