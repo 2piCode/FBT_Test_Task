@@ -26,16 +26,11 @@ void AMOTOR::Execute() noexcept {
     if(lim && hold)
         return;
 
-    if(reset && clr)
-    { }
-    else if(reset)
-    {
+    if(reset)
         Reset();
-        return;
-    } else if(clr) {
+
+    if(clr)
         Clear();
-        return;
-    }
 
     ExecuteMode();
     CheckLimits();
@@ -78,9 +73,7 @@ void AMOTOR::CheckLimits() noexcept {
         return;
     }
 
-    if(count > static_cast<lint_t>(max))
-        lim = bool_t {true};
-    else if (count < static_cast<lint_t>(min))
+    if(count > static_cast<lint_t>(max) || count < static_cast<lint_t>(min))
         lim = bool_t {true};
 }
 

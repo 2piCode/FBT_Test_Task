@@ -269,7 +269,7 @@ namespace general {
 
         reset = bool_t{true};
         block.Execute();
-        FBT_TEST(static_cast<lint_t>(count) == lint_t{0});
+        FBT_TEST(static_cast<lint_t>(count) == lint_t{1});
         FBT_TEST(static_cast<bool_t>(reset) == bool_t{false});
         FBT_TEST(static_cast<lint_t>(cumcount) == lint_t{0});
         FBT_TEST(static_cast<lint_t>(pcum) == lint_t{11});
@@ -288,7 +288,7 @@ namespace general {
 
         clr = bool_t{true};
         block.Execute();
-        FBT_TEST(static_cast<lint_t>(count) == lint_t{0});
+        FBT_TEST(static_cast<lint_t>(count) == lint_t{1});
         FBT_TEST(static_cast<bool_t>(clr) == bool_t{false});
     }
 
